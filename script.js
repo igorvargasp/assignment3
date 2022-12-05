@@ -40,7 +40,7 @@ const rules = (playerSelection, computeSelection, name, round) => {
 };
 
 const validateAnswer = () => {
-  var answer = prompt("Rock, Paper or Scissors?").toLowerCase();
+  let answer = prompt("Rock, Paper or Scissors?").trim().toLowerCase();
   if (answer === "rock" || answer === "paper" || answer === "scissors") {
     return answer;
   } else {
