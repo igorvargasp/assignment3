@@ -1,6 +1,13 @@
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+const score = document.getElementById("score");
+const winner = document.getElementById("winner");
+
 let playerWins = 0;
 let computerWins = 0;
 let draws = 0;
+let round = 1;
 
 const computePlay = () => {
   let computerChoice = Math.floor(Math.random() * 3);
@@ -13,8 +20,19 @@ const computePlay = () => {
     return "scissors";
   }
 };
+rockButton.addEventListener("click", (e) => {
+  playRound(e.target.id, computePlay(), round);
+});
 
-const rules = (playerSelection, computeSelection, name, round) => {
+paperButton.addEventListener("click", (e) => {
+  playRound(e.target.id, computePlay(), round);
+});
+
+scissorsButton.addEventListener("click", (e) => {
+  playRound(e.target.id, computePlay(), round);
+});
+
+const playRound = (playerSelection, computeSelection) => {
   if (
     (playerSelection === "rock" && computeSelection === "paper") ||
     (playerSelection === "paper" && computeSelection === "scissors") ||
@@ -23,47 +41,61 @@ const rules = (playerSelection, computeSelection, name, round) => {
     console.log(`round ${round} the winner was the computer`);
     computerWins++;
     alert(`You Lose! ${computeSelection} beats ${playerSelection}`);
+    score.textContent = `Score: Computer = ${computerWins}, ${playerName} = ${playerWins}`;
   } else if (
     (playerSelection === "rock" && computeSelection === "scissors") ||
     (playerSelection === "paper" && computeSelection === "rock") ||
     (playerSelection === "scissors" && computeSelection === "paper")
   ) {
-    console.log(`round ${round} the winner was ${name}`);
+    console.log(`round ${round} the winner was ${playerName}`);
     playerWins++;
     alert(
-      `${name} wins the round! ${playerSelection} beats ${computeSelection}`
+      `${playerName} wins the round! ${playerSelection} beats ${computeSelection}`
     );
+    score.textContent = `Score: ${playerName} = ${playerWins}, Computer = ${computerWins}`;
   } else if (playerSelection === computeSelection) {
     draws++;
     alert("It's a draw!");
   }
-};
-
-const validateAnswer = () => {
-  let answer = prompt("Rock, Paper or Scissors?").trim().toLowerCase();
-  if (answer === "rock" || answer === "paper" || answer === "scissors") {
-    return answer;
-  } else {
-    alert("Please enter a valid answer");
-    return validateAnswer();
+  round++;
+  if (round === 6) {
+    endOfTheGame();
   }
 };
 
-const playRound = (playerName) => {
-  for (let i = 1; i <= 5; i++) {
-    let answerValidated = validateAnswer();
-    rules(answerValidated, computePlay(), playerName, i);
-  }
-
+const endOfTheGame = () => {
   if (playerWins > computerWins) {
-    alert(`${playerName} wins the game!`);
+    winner.textContent = `${playerName} wins the game!`;
   } else if (computerWins > playerWins) {
-    alert("The computer wins the game!");
+    winner.textContent = "The computer wins the game!";
   } else {
-    alert("It's a draw!. There's no winners");
+    winner.textContent = "It's a draw!. There's no winners";
   }
+  createModal();
 };
 
 let playerName = prompt("Enter your name:");
-const game = () => playRound(playerName);
-game();
+
+const createModal = () => {
+  const parent = document.createElement("div");
+
+  const modal = document.createElement("div");
+  parent.classList.add("modal");
+  parent.setAttribute("id", "modal");
+  const body = document.querySelector("body");
+  body.appendChild(parent);
+  modal.innerHTML = `
+    <div class="modal-content">
+    
+        <button id="play" >Play Again?</button>
+        <button id="cancel">Cancel</button>
+   
+      </div>`;
+  parent.appendChild(modal);
+  document.getElementById("play").addEventListener("click", function (e) {
+    location.reload();
+  });
+  document.getElementById("cancel").addEventListener("click", function (e) {
+    parent.remove();
+  });
+};

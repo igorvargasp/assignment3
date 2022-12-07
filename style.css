@@ -1,0 +1,125 @@
+:root {
+    --charcoal: #071e22;
+    --blush: #fceff9;
+    --lightblue: #2191fb;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    color: var(--charcoal);
+    font-family: "Courier New", Courier, monospace;
+    background-color: var(--lightblue);
+  }
+  
+  * {
+    box-sizing: border-box; /* this makes the padding and margin to be included in the final size of the box */
+  }
+  
+  h1 {
+    font-size: 64px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 34px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--blush);
+  }
+  
+  h3 {
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--blush);
+  }
+  
+  .container {
+    padding: 40px;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+  }
+  
+  #button-container {
+    width: 900px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .button {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cornsilk;
+    font-size: 32px;
+    border-radius: 5px;
+    margin: 10px;
+    border-color: var(--seagreen);
+    border-width: 5px;
+    font-weight: bold;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  #rock {
+    background-image: url("images/rock-png.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  #paper {
+    background-image: url("images/paper-png.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  #scissors {
+    background-image: url("images/scissors.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  button {
+    background-color: var(--blush);
+    color: var(--charcoal);
+    width: 140px;
+    height: 70px;
+    border-radius: 5px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+
+
+
+  /* The Modal (background) */
+.modal {
+    display: flex; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
