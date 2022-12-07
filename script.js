@@ -87,7 +87,7 @@ const createModal = () => {
   modal.innerHTML = `
     <div class="modal-content">
     
-        <button id="play" >Play Again?</button>
+        <button id="play" class="play" >Play Again?</button>
         <button id="cancel">Cancel</button>
    
       </div>`;
